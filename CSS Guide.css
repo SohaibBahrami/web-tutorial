@@ -1,0 +1,332 @@
+p,
+h1 {
+  color: #000000;
+  background: #000;
+  text-align: justify;
+  font-weight: bolder;
+  text-decoration: wavy #ee3333 underline;
+  line-height: 1.5;
+  letter-spacing: 20px;
+  font-size: 60px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+}
+
+/* universal selector */
+* {
+  color: white;
+}
+#id {
+  color: white;
+}
+.class {
+  color: black;
+}
+/* descendent selector. select all a inside footer */
+footer a {
+  color: white;
+}
+/* adjacent selector. only p that are preceeded by h1 */
+h1 + p {
+  color: red;
+}
+/* direct child selector. only select li that are direct child of div */
+div > li {
+  color: white;
+}
+/* attribute selector */
+input[type="text"] {
+  color: black;
+}
+section[class="post"] {
+  /* same as section.post */
+  color: white;
+}
+a[href*="google"] {
+  /* *= means all elements that contain said characters */
+  color: black;
+}
+
+/* Pseudo classes. */
+/* :hover. Select any a element when hovered */
+a:hover {
+  color: orange;
+}
+/* :active. Select any element when active */
+button:active {
+  color: aqua;
+}
+/* :checked */
+input[typt="checkbox"]:checked {
+  color: white;
+}
+/* :nth-of-type(n) matches elements based on their position among siblings of the same type. */
+li:nth-of-type(even) {
+  /* Even elements */
+  border: 2px solid orange;
+}
+li:nth-of-type(3n) {
+  /* Every 3 elements */
+  border: 2px solid orange;
+}
+li:nth-of-type(3) {
+  /* The third element */
+  border: 2px solid orange;
+}
+
+/* Pseudo elements. a keyword added to a selector that lets you style a specific part of the selected element */
+/* ::first-letter applies styles to the first letter of the first line of a block container */
+p::first-letter {
+  font-weight: bold;
+}
+/* ::first-line applies styles to the first line of a block container */
+p::first-line {
+  text-decoration: underline;
+}
+/* ::selection applies styles to the part of a document that has been highlighted by the user */
+p::selection {
+  color: red;
+  background-color: yellow;
+}
+
+/* The last loaded style targeting an element wins */
+/* The more specific selector wins. ID > Class > Element (most specific to least) */
+/* The most specific is inline-style (style specified in html code). should try to avoid using */
+/* The !important exception. The ultimate specifity. should try to avoid using */
+p {
+  color: red !important;
+}
+/* specifity can potentially slow down page loading */
+
+/* inherit */
+p {
+  /* inherits color from nearest parent */
+  color: inherit;
+}
+
+/* THE CSS BOX MODEL */
+p {
+  width: 200px;
+  height: 100px;
+  /* width | style | color */
+  border: thick double #32a1ce;
+  /* top | right | bottom | left */
+  /* top | left and right | bottom */
+  border-width: 0 4px 8px 12px;
+  border-style: dotted;
+  border-color: red;
+  border-left-color: blue;
+  /* Puts the border inside the element */
+  box-sizing: border-box;
+  /* border-radius. rounds the corners of an element's outer border edge. */
+  /* top-left | top-right | bottom-right | bottom-left */
+  border-radius: 1px 0 3px 4px;
+  /* padding. The space between the content and the border of an element */
+  /* top | right | bottom | left */
+  padding: 5px 1px 0 2px;
+  /* margin. space between this element and others */
+  margin: auto;
+  /* display.sets whether an element is treated as a block or inline box and the layout used for its children */
+  /* width, padding and height are ignored in inline elements */
+  /* inline-block behaves like inline but width, height and padding are respected */
+  display: inline-block;
+  /* hides the element without deleting it */
+  display: none;
+}
+
+/* CSS UNITS */
+/* Absolute: cm, px, mm, ... */
+/* Relative: rem, rem, %, vh, vm */
+/* width = 50%; means half the width of the parent */
+/* em: for font-size it's relative to the font size of the parent. for other properties, it's relative to it's own font size  */
+p {
+  font-size: 1.5em;
+  margin: 0.5em;
+}
+/* rem: relative to the root html element's font size */
+
+/* Alpha channel (opacity): rgba(r, g, b, a) */
+button {
+  color: rgba(100, 150, 250, 0.5);
+  background-color: #554499ff;
+}
+/* opacity: governs the entire element's opacity */
+section {
+  opacity: 50%;
+}
+
+/* position */
+img {
+  /* relative to its original place */
+  position: relative;
+  top: 100px;
+  left: 100px;
+  right: 100px;
+  bottom: 100px;
+}
+img {
+  /* relative to its parent */
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  right: 100px;
+  bottom: 100px;
+}
+img {
+  /* fixed on the screen */
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  right: 100px;
+  bottom: 100px;
+}
+
+/* transition */
+/* transition-behavior
+   transition-delay
+   transition-duration
+   transition-property
+   transition-timing-function */
+p {
+  background-color: aqua;
+  /* property name | duration */
+  transition: margin-right 4s;
+  /* property name | duration | delay */
+  transition: margin-right 4s 1s;
+  /* property name | duration | easing function | delay */
+  transition: margin-right 4s ease-in-out 1s;
+  /* property name | duration | behavior */
+  transition: display 4s allow-discrete;
+  /* Apply to 2 properties */
+  transition: margin-right 4s, color 1s;
+  /* Apply to all changed properties */
+  transition: all 0.5s ease-out allow-discrete;
+  transition: 200ms linear 50ms;
+}
+p:hover {
+  background-color: red;
+}
+
+/* transform: lets you rotate, scale, skew, or translate an element. */
+/* 
+transform: matrix(1, 2, 3, 4, 5, 6);
+transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+transform: perspective(17px);
+transform: rotate(0.5turn);
+transform: rotate3d(1, 2, 3, 10deg);
+transform: rotateX(10deg);
+transform: translate(12px, 50%);
+transform: translate3d(12px, 50%, 3em);
+transform: translateX(2em);
+transform: scale(2, 0.5);
+transform: scale3d(2.5, 1.2, 0.3);
+transform: scaleX(2);
+transform: skew(30deg, 20deg);
+transform: skewX(30deg); 
+*/
+/* transform-origin= center */
+
+/* center text in its container */
+button {
+  margin: 20px auto;
+}
+/* flexbox center item */
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+/* box-shadow, text-shadow */
+button {
+  /* X | Y | blur radius | spread radius | color */
+  box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
+}
+/* change cursor */
+button:hover {
+  cursor: pointer;
+}
+
+section {
+  /* the order doesn't matter but background-size must come after position */
+  background: center/cover url("../img/image.png");
+  /* A single image, centered and scaled */
+  background: no-repeat center/80% url("../img/image.png");
+  background-image: url();
+  background-size: cover;
+  background-image: linear-gradient();
+}
+
+/* google fonts: for CSS */
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
+
+img {
+  margin: calc(10% / 6);
+}
+
+/* Responsiveness */
+
+section {
+  /* turning flexbox properties on in a container */
+  display: flex;
+  /* main axis, cross axis. */
+  /* choose which axis */
+  flex-direction: column-reverse;
+  /* justify-content: how content is distributed across the main axis */
+  justify-content: space-evenly;
+  /* sets whether flex items are forced onto one line or can wrap onto multiple lines. */
+  flex-wrap: wrap;
+  /* it controls the alignment of items on the cross axis */
+  align-items: flex-start;
+  /* how content is distributed across the cross axis. Must have flex-wrap */
+  align-content: space-around;
+
+  /* Flex sizing properties */
+  /* the initial size of an element before placement. ignores the set size. */
+  flex-basis: 400px;
+  max-width: fit-content;
+  min-width: auto;
+}
+div {
+  /* for individual items */
+  align-self: start;
+  /* flex sizing. controls the amount of space that an element takes up if there is any */
+  flex-grow: 200px;
+  /* controls how elements shrink when there's no space */
+  flex-shrink: 2;
+  /* allows to set all three */
+  /* grow | shrink| basis */
+  flex: 2 5 10px;
+}
+
+/* Media Queries. starts with @media */
+@media (width: 800px) {
+  /* when width is exactly 800px: */
+  h1 {
+    color: purple;
+  }
+}
+@media (min-width: 800px) {
+  /* applies when width is at least 800px */
+  h1 {
+    color: purple;
+  }
+}
+@media (max-width: 800px) {
+  /* applies when width is at most 800px */
+  h1 {
+    color: purple;
+  }
+}
+@media (min-width: 600px) and (max-width: 1000px) {
+  /* applies when width is between 600px and 1000px */
+  h1 {
+    color: purple;
+  }
+}
+@media (orientation: landscape) {
+  /* applies when in landscape mode */
+  body {
+    background-color: magenta;
+  }
+}
